@@ -239,7 +239,7 @@ controls.enableZoom = true;
 controls.maxPolarAngle = Math.PI / 2.1;
 //===================================================== add VR
 console.log(window.devicePixelRatio);
-renderer.setPixelRatio(1.5); //VR
+//renderer.setPixelRatio(1.5); //VR
 var effect = new THREE.StereoEffect(renderer); //VR
 effect.setSize(window.innerWidth, window.innerHeight); //VR
 
