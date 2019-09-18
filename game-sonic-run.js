@@ -120,10 +120,10 @@ var exitFullscreen = function(ele) {
 };
 //===================================================== add canvas
 var bloomPass;
-let renderer = new THREE.WebGLRenderer({ canvas:canvas, antialias: true, alpha: true });
+let renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0xd8e7ff, 0);
-// document.body.appendChild(renderer.domElement);
+document.body.appendChild(renderer.domElement);
 //===================================================== resize
 window.addEventListener("resize", function() {
   let width = window.innerWidth;
