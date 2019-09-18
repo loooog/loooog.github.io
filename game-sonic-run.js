@@ -128,6 +128,7 @@ console.log(renderer.domElement);
 console.log(renderer.domElement.width);
 let width = window.innerWidth;
 let height = window.innerHeight;
+console.log(width+":"+height);
 renderer.domElement.width = width;
 renderer.domElement.height = height;
 //===================================================== resize
@@ -237,7 +238,8 @@ controls.enableZoom = true;
 //How far you can orbit vertically, upper and lower limits. The maximum is Pi / 2 (90deg). You wont see below the below the line of the horizon
 controls.maxPolarAngle = Math.PI / 2.1;
 //===================================================== add VR
-renderer.setPixelRatio(window.devicePixelRatio); //VR
+console.log(window.devicePixelRatio);
+renderer.setPixelRatio(1.5); //VR
 var effect = new THREE.StereoEffect(renderer); //VR
 effect.setSize(window.innerWidth, window.innerHeight); //VR
 
