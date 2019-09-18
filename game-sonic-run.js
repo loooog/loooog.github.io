@@ -27,7 +27,7 @@
 //公司的代理可能无法访问腾讯云
 //近期：logo替换   rank
 // const ring = wx.createAudioContext(audioid, this)
-let audioMan = new Music();
+// let audioMan = new Music();
 // this = window;
 // this.ring = wx.createInnerAudioContext();
 // let ring = new Audio();
@@ -501,7 +501,7 @@ for (var i = 0; i < carPath.points.length; i++) {
 function PlaySound() {
   // bflat.play();
   // ring.currentTime = 0
-  audioMan.playRing();
+//   audioMan.playRing();
 
   bloomPass.strength = MAX_BLOOM_STRENGTH;
   bloomCounter = BLOOM_CNT;
