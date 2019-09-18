@@ -7,14 +7,14 @@
 
 //import './libs/weapp-adapter/index'
 // import './libs/symbol'
-import * as THREE from './libs/threejs/three.min'
-import './libs/threejs/controls/OrbitControls'
-import './libs/threejs/plugins/PostProcessing'
-import './libs/threejs/plugins/GLTFLoader'
-import './libs/threejs/plugins/OBJLoader'
+// import * as THREE from './libs/threejs/three.min'
+// import './libs/threejs/controls/OrbitControls'
+// import './libs/threejs/plugins/PostProcessing'
+// import './libs/threejs/plugins/GLTFLoader'
+// import './libs/threejs/plugins/OBJLoader'
 
 
-import { TimelineMax, Power4, Power2, TweenLite, Elastic, TweenMax } from './libs/tweenmax'
+// import { TimelineMax, Power4, Power2, TweenLite, Elastic, TweenMax } from './libs/tweenmax'
 import Music from './js/music'
 
 //低端设备iPhone5s比较卡
