@@ -392,8 +392,8 @@ loader.load(
     mixer = new THREE.AnimationMixer(firstObject);
     mixer.clipAction(gltf.animations[0]).play();
 
-    // document.body.addEventListener("click", jump);
-    wx.onTouchEnd(jump);
+     document.body.addEventListener("click", jump);
+    //wx.onTouchEnd(jump);
     function jump() {
       console.log(down);
       mixer.clipAction(gltf.animations[0]).stop();
