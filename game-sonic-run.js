@@ -124,12 +124,15 @@ let renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0xd8e7ff, 0);
 document.body.appendChild(renderer.domElement);
-console.log(renderer.domElement.size);
+console.log(renderer.domElement);
 console.log(renderer.domElement.width);
+let width = window.innerWidth;
+let height = window.innerHeight;
+renderer.domElement.width = width;
+renderer.domElement.height = height;
 //===================================================== resize
 window.addEventListener("resize", function() {
-  let width = window.innerWidth;
-  let height = window.innerHeight;
+  
   renderer.setSize(width, height);
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
