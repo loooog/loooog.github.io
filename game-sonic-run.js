@@ -15,7 +15,7 @@
 
 
 // import { TimelineMax, Power4, Power2, TweenLite, Elastic, TweenMax } from './libs/tweenmax'
-import Music from './js/music'
+// import Music from './js/music'
 
 //低端设备iPhone5s比较卡
 //todo:  声音！  特效！ 模型！排行榜
