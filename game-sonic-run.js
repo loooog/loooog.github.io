@@ -374,7 +374,7 @@ var loader = new THREE.GLTFLoader();
 loader.load(
 //   "https://wx01-1258189739.cos.ap-shanghai.myqcloud.com/sonic.bin",
 
-  // "sonic.bin",
+  "sonic.bin",
   function(gltf) {
     gltf.scene.traverse(function(node) {
       if (node instanceof THREE.Mesh) {
