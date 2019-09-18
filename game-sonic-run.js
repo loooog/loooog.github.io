@@ -124,6 +124,8 @@ let renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0xd8e7ff, 0);
 document.body.appendChild(renderer.domElement);
+console.log(renderer.domElement.size);
+console.log(renderer.domElement.width);
 //===================================================== resize
 window.addEventListener("resize", function() {
   let width = window.innerWidth;
