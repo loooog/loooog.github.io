@@ -346,7 +346,7 @@ var loader = new THREE.GLTFLoader();
 var model;
 loader.load(
   // "models/sky-island.bin",
-  "https://wx01-1258189739.cos.ap-shanghai.myqcloud.com/sky-island.glb",
+  "sky-island.glb",
 // "https://gitee.com/crystalocean/3D-Face-Reconstruction/raw/master/sky-island.glb",
   function(gltf) {
     gltf.scene.traverse(function(node) {
@@ -449,7 +449,7 @@ objLoader.load("j&j2.obj", function (object3d) {
 }, null, null);
 
 // objLoader.load("models/dabao.obj", function (object3d) {
-objLoader.load("https://wx01-1258189739.cos.ap-shanghai.myqcloud.com/dabao2.obj", function (object3d) {
+objLoader.load("dabao2.obj", function (object3d) {
   object3d.scale.multiplyScalar(9);
   // object3d.rotation.x += 1;
   object3d.rotation.y += 0.4;
