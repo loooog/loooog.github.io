@@ -372,9 +372,9 @@ var firstObject;
 var loader = new THREE.GLTFLoader();
 
 loader.load(
-  "https://wx01-1258189739.cos.ap-shanghai.myqcloud.com/sonic.bin",
+//   "https://wx01-1258189739.cos.ap-shanghai.myqcloud.com/sonic.bin",
 
-  // "https://raw.githubusercontent.com/baronwatts/models/master/sonic.glb",
+  // "sonic.bin",
   function(gltf) {
     gltf.scene.traverse(function(node) {
       if (node instanceof THREE.Mesh) {
@@ -416,7 +416,7 @@ var objLoader = new THREE.OBJLoader();
 // objLoader.setMaterials(materials);
 // objLoader.setPath("models/");
 // objLoader.load("models/j&j2.obj", function (object3d) {
-objLoader.load("https://wx01-1258189739.cos.ap-shanghai.myqcloud.com/j%26j2.obj", function (object3d) {
+objLoader.load("j&j2.obj", function (object3d) {
   object3d.scale.multiplyScalar(1/28);
   object3d.rotation.x += 1;
   // object3d.rotation.y += 0.3;
