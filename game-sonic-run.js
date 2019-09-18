@@ -5,7 +5,7 @@
 // import Main from './js/main'
 
 
-import './libs/weapp-adapter/index'
+//import './libs/weapp-adapter/index'
 // import './libs/symbol'
 import * as THREE from './libs/threejs/three.min'
 import './libs/threejs/controls/OrbitControls'
