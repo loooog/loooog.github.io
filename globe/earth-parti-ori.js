@@ -1,14 +1,14 @@
-// import './libs/weapp-adapter/index'
-// import './libs/symbol'
+import './libs/weapp-adapter/index'
+import './libs/symbol'
 
-// import * as THREE from './libs/threejs/three.min'
+import 'three.52.js'
+// import * as THREE from 'three.52.js'
 // import './libs/AudioObject'
 // import './libs/threejs/plugins/PostProcessing'
 // console.log(THREE.AudioObject);
 // import './libs/threejs/controls/OrbitControls'
 
-// import TWEEN from './libs/tween'
-// import TWEEN from './libs/tween_earth'
+import TWEEN from './libs/tween'
 
 // var container, meshes, pointCloud;
 
@@ -51,9 +51,6 @@ var imageW, imageH, lineGeometry, vertex2
 document.addEventListener('mousemove', onDocumentMouseMove, false);
 document.addEventListener('touchmove', onTouchMove, false);
 
-//原始raw的three版本，vertices
-
-
 
 loadImage();
 
@@ -66,9 +63,9 @@ function loadImage() {
 
     // canvas
     var imgCanvas = document.createElement("canvas");
-    // var imgCanvas = wx.createCanvas();
     console.log("imgCanvas");
     console.log(imgCanvas);
+    console.log(this.width);
     imgCanvas.width = this.width;
     imgCanvas.height = this.height;
 
@@ -80,6 +77,7 @@ function loadImage() {
 
     //data
     var pixels = context.getImageData(0, 0, imageW, imageH).data;
+    console.log(pixels.length)
     var index = 0;
     var modCount = 0;
     for (var x = 0; x < imageW; ++x) {
@@ -100,30 +98,25 @@ function loadImage() {
       }
       ++modCount;
     }
-    console.log("img");
-    console.log(img);
-    console.log(imageW)
-    console.log(imageH)
-    console.log(imageH * imageW)
-    console.log(array.length);
+
     init();
     animate()
   };
   img.src = "map_small.jpg";
-  // img.src = "http://oos.moxiecode.com/js_webgl/world/map_small.jpg";
   img.crossOrigin = "anonymous";
 
 }
 
 function init() {
 
-  container = document.createElement('div');
-  document.body.appendChild(container);
+  // container = document.createElement('div');
+  // document.body.appendChild(container);
 
   scene = new THREE.Scene();
   scene.fog = new THREE.Fog(0x000000, 30, 290);
 
   camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
+  // camera.position.z = 200;
   camera.position.z = -200;
   camera.lookAt(scene.position);
   scene.add(camera);
@@ -139,18 +132,10 @@ function init() {
   var radius = 100;
 
   var geometry = new THREE.Geometry();
-  //fixme
-  var buffGeo = new THREE.BufferGeometry();
-  // geometry = buffGeo;
-  console.log("geometry.vertices");
-  console.log(geometry.vertice);
-
   var colors = [];
 
   var w_step = Math.PI * 2 / 256;
   var h_step = Math.PI / 128;
-
-  var positions = [];
 
   for (i = 0; i < array.length; i++) {
 
@@ -169,14 +154,8 @@ function init() {
     vertex1.z = radius * -Math.sin(y);
 
     geometry.vertices.push(vertex1);
-    positions.push(vertex1.x);
-    positions.push(vertex1.y);
-    positions.push(vertex1.z);
 
   }
-  // buffGeo.fromDirectGeometry(geometry);
-  
-  //todo position 作为vertices
 
   attributes = {
 
@@ -194,26 +173,10 @@ function init() {
 
   };
 
-  
-  console.log(buffGeo.attributes);
-  // var positions = [];
-  var colors = [];
-  var sizes = [];
-  var time = [];
-  var color = new THREE.Color();
-  for (var i = 0; i < 800; i++) {
-    // positions.push((Math.random() * 2 - 1) * radius);
-    // positions.push((Math.random() * 2 - 1) * radius);
-    // positions.push((Math.random() * 2 - 1) * radius);
-    // color.setHSL(i / particles, 1.0, 0.5);
-    // colors.push(color.r, color.g, color.b);
-    // sizes.push(20);
-  }
-  
   var material = new THREE.ShaderMaterial({
 
     uniforms: uniforms,
-    // attributes: attributes,
+    attributes: attributes,
     vertexShader: `
     attribute float size;
 			attribute vec3 customColor;
@@ -279,47 +242,20 @@ function init() {
   var values_time = attributes.time.value;
   var values_color = attributes.customColor.value;
 
-  var colorArray = [];
-
   var colors = [new THREE.Color(0x587f52), new THREE.Color(0xabb7aa), new THREE.Color(0x0a0d09), new THREE.Color(0x4e8342), new THREE.Color(0x818e7f)];
-  console.log(colors[0])
 
   console.log(vertices.length + " : " + array.length)
-//array geo   fixme
+  console.log(attributes)
+
   for (var v = 0; v < vertices.length; v++) {
-  // for (var v = 0; v < array.length; v++) {
 
     values_size[v] = 1.0 + Math.random() * 3.0;
-    let ind = Math.floor(Math.random() * colors.length);
-    // console.log(ind)
-    values_color[v] = colors[ind];
-    colorArray.push(colors[ind].r, colors[ind].g, colors[ind].b);
+    values_color[v] = colors[Math.floor(Math.random() * colors.length)];
     values_time[v] = array[v].delay;
 
   }
 
-  console.log(values_color.length);
-  console.log(values_color);
-  buffGeo.addAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-  buffGeo.addAttribute('time', new THREE.Float32BufferAttribute(values_time, 1));
-  buffGeo.addAttribute('customColor', new THREE.Float32BufferAttribute(colorArray, 3));//fixme
-  // buffGeo.addAttribute('color', new THREE.Float32BufferAttribute(colorArray, 3));
-  buffGeo.addAttribute('size', new THREE.Float32BufferAttribute(values_size, 1));//.setUsage(THREE.DynamicDrawUsage)
-
-
-  var basicMat = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-
-  console.log(buffGeo.attributes);
-  console.log("size of arrays:");
-  console.log(values_size.length);
-  console.log(sizes);
-  console.log(buffGeo.attributes.customColor);
-  console.log(attributes.size.value.length);
-  // console.log(buffGeo.attributes.customColor.value);
-
-//geometry = buffGeo;  
-//fixme geom
-  var particles = new THREE.Points(buffGeo, basicMat);
+  var particles = new THREE.ParticleSystem(geometry, material);
   worldContainer.add(particles);
 
   // lines
@@ -343,15 +279,12 @@ function init() {
     };
 
   }
-  console.log(geometry.vertices.length);
-  console.log(lineGeometry.vertices.length);
 
   var lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff, opacity: 0.0, linewidth: 1.0 });
 
   // var line = new THREE.Line(lineGeometry, lineMaterial, THREE.LinePieces);
   var line = new THREE.Line(lineGeometry, lineMaterial, THREE.LineSegments);
   worldContainer.add(line);
-  //目前显示的是线
 
   // outer particles
   var particleGeometry = new THREE.Geometry();
@@ -368,7 +301,7 @@ function init() {
   var outerMaterial = new THREE.ParticleBasicMaterial({ map: THREE.ImageUtils.loadTexture("hex.png"), opacity: 0.0, size: 3, transparent: true, alphaTest: 0.5 });
 
   var outerParticles = new THREE.ParticleSystem(particleGeometry, outerMaterial);
-  // worldContainer.add(outerParticles);
+  worldContainer.add(outerParticles);
 
   // ribbons
   for (var k = 0; k < 14; k++) {
@@ -379,8 +312,8 @@ function init() {
       ribbon.vertices.push(new THREE.Vector3());
 
       var color = new THREE.Color(0xffffff);
-      // color.setHSV(0.15, 0.6, 1.0 - (i / 50));
-      color.setHSL(0.15, 0.6, 1.0 - (i / 50));
+      color.setHSV(0.15, 0.6, 1.0 - (i / 50));
+      // color.setHSL(0.15, 0.6, 1.0 - (i / 50));
       colors.push(color);
 
     }
@@ -392,15 +325,12 @@ function init() {
     var ribbonMesh = new THREE.Line(ribbon, material);
     ribbon.dynamic = true;
     ribbonMesh.frustumCulled = false;
-    worldContainer.add(ribbonMesh);
+    // worldContainer.add(ribbonMesh);
 
     ribbonArray.push({ geometry: ribbon, mesh: ribbonMesh, id: k, startPoint: null, endPoint: null, currentPoint: null, animationTime: 0 });
 
     startLineAnimation(k, 3000 + (k * 200));
   };
-
-  console.log(TWEEN.Easing.Linear.EaseNone);
-  console.log(TWEEN.Tween._easingFunction);
 
 
   var animTween = new TWEEN.Tween(uniforms.globalTime)
@@ -435,10 +365,12 @@ function init() {
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     // THREEx.WindowResize(renderer, camera);
+    
+    // update the camera
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
-    container.appendChild(renderer.domElement);
+    // container.appendChild(renderer.domElement);
     has_gl = true;
   }
   catch (e) {
@@ -490,14 +422,14 @@ function runLineAnimations() {
   for (var k = 0; k < ribbonArray.length; k++) {
     var o = ribbonArray[k];
 
-    o.currentPoint.lerp(o.endPoint, o.animationTime);
+    o.currentPoint.lerpSelf(o.endPoint, o.animationTime);
     var lng = 110;
 
     for (var i = 0; i < o.geometry.vertices.length; i++) {
       if (i == 0) {
         o.geometry.vertices[i] = o.currentPoint.clone().setLength(lng);
       } else {
-        o.geometry.vertices[i].lerp(o.geometry.vertices[i - 1], 0.35).setLength(lng);
+        o.geometry.vertices[i].lerpSelf(o.geometry.vertices[i - 1], 0.35).setLength(lng);
       };
     };
 
@@ -537,6 +469,7 @@ function animate() {
 }
 
 function render() {
+  // console.log(1)
 
   time = new Date().getTime();
   delta = time - oldTime;
@@ -552,7 +485,6 @@ function render() {
 
   world.rotation.y -= mouseX / 20000;
 
-//fixme
   // TWEEN.update();
 
   runLineAnimations();
