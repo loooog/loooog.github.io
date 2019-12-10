@@ -485,7 +485,7 @@ function render() {
 
   world.rotation.y -= mouseX / 20000;
 
-  // TWEEN.update();
+  TWEEN.update();
 
   runLineAnimations();
 
