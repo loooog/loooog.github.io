@@ -325,7 +325,7 @@ function init() {
     var ribbonMesh = new THREE.Line(ribbon, material);
     ribbon.dynamic = true;
     ribbonMesh.frustumCulled = false;
-    // worldContainer.add(ribbonMesh);
+    worldContainer.add(ribbonMesh);
 
     ribbonArray.push({ geometry: ribbon, mesh: ribbonMesh, id: k, startPoint: null, endPoint: null, currentPoint: null, animationTime: 0 });
 
