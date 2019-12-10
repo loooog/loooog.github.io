@@ -271,15 +271,15 @@ var container;
           // renderer
           renderer = new THREE.WebGLRenderer({antialias: true});
           renderer.setSize( window.innerWidth, window.innerHeight );
-          THREEx.WindowResize(renderer, camera);
+          // THREEx.WindowResize(renderer, camera);
 
           container.appendChild( renderer.domElement );
           has_gl = true;
         }
         catch (e) {
           // need webgl
-          document.getElementById('info').innerHTML = "<P><BR><B>Note.</B> You need a modern browser that supports WebGL for this to run the way it is intended.<BR>For example. <a href='http://www.google.com/landing/chrome/beta/' target='_blank'>Google Chrome 9+</a> or <a href='http://www.mozilla.com/firefox/beta/' target='_blank'>Firefox 4+</a>.<BR><BR>If you are already using one of those browsers and still see this message, it's possible that you<BR>have old blacklisted GPU drivers. Try updating the drivers for your graphic card.<BR>Or try to set a '--ignore-gpu-blacklist' switch for the browser.</P><CENTER><BR><img src='../general/WebGL_logo.png' border='0'></CENTER>";
-          document.getElementById('info').style.display = "block";
+          // document.getElementById('info').innerHTML = "<P><BR><B>Note.</B> You need a modern browser that supports WebGL for this to run the way it is intended.<BR>For example. <a href='http://www.google.com/landing/chrome/beta/' target='_blank'>Google Chrome 9+</a> or <a href='http://www.mozilla.com/firefox/beta/' target='_blank'>Firefox 4+</a>.<BR><BR>If you are already using one of those browsers and still see this message, it's possible that you<BR>have old blacklisted GPU drivers. Try updating the drivers for your graphic card.<BR>Or try to set a '--ignore-gpu-blacklist' switch for the browser.</P><CENTER><BR><img src='../general/WebGL_logo.png' border='0'></CENTER>";
+          // document.getElementById('info').style.display = "block";
           return;
         }
 
@@ -387,7 +387,7 @@ var container;
 
         world.rotation.y -= mouseX/20000;
         
-        TWEEN.update();
+        // TWEEN.update();
 
         runLineAnimations();
 
