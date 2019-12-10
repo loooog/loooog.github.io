@@ -117,8 +117,8 @@ function loadImage() {
 
 function init() {
 
-  // container = document.createElement('div');
-  // document.body.appendChild(container);
+  container = document.createElement('div');
+  document.body.appendChild(container);
 
   scene = new THREE.Scene();
   scene.fog = new THREE.Fog(0x000000, 30, 290);
@@ -437,7 +437,7 @@ function init() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
-    // container.appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement);
     has_gl = true;
   }
   catch (e) {
