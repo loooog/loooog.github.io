@@ -1,14 +1,14 @@
-import './libs/weapp-adapter/index'
-import './libs/symbol'
+// import './libs/weapp-adapter/index'
+// import './libs/symbol'
 
-import 'three.52.js'
+// import 'three.52.js'
 // import * as THREE from 'three.52.js'
 // import './libs/AudioObject'
 // import './libs/threejs/plugins/PostProcessing'
 // console.log(THREE.AudioObject);
 // import './libs/threejs/controls/OrbitControls'
 
-import TWEEN from './libs/tween'
+// import TWEEN from './libs/tween'
 
 // var container, meshes, pointCloud;
 
