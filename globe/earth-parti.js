@@ -431,7 +431,8 @@ function init() {
 
   try {
     // renderer
-    renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+    // renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+    renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     // THREEx.WindowResize(renderer, camera);
     camera.aspect = window.innerWidth / window.innerHeight;
