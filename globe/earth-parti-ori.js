@@ -370,7 +370,7 @@ function init() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
-    // container.appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement);
     has_gl = true;
   }
   catch (e) {
