@@ -109,8 +109,8 @@ function loadImage() {
 
 function init() {
 
-  // container = document.createElement('div');
-  // document.body.appendChild(container);
+  container = document.createElement('div');
+  document.body.appendChild(container);
 
   scene = new THREE.Scene();
   scene.fog = new THREE.Fog(0x000000, 30, 290);
