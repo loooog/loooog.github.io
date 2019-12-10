@@ -23,6 +23,65 @@
 <script src="https://threejs.org/examples/js/effects/StereoEffect.js"></script>
 <!-- <script src="https://threejs.org/examples/js/libs/tween.min.js"></script> -->
 
+<script type="x-shader/x-vertex" id="vertexshader">
+
+      attribute float size;
+      attribute vec3 customColor;
+      attribute float time;
+      uniform float globalTime;
+
+      varying vec3 vColor;
+      varying float fAlpha;
+
+      void main() {
+
+        vColor = customColor;
+
+        vec3 pos = position; 
+
+        float animTime = min(1.4, max(1.0, globalTime - time));
+
+        vec3 animated = vec3( pos.x * animTime, pos.y * animTime, pos.z * animTime );
+
+        vec4 mvPosition = modelViewMatrix * vec4( animated, 1.0 );
+
+        fAlpha = 1.0 - (globalTime*0.5);
+
+        gl_PointSize = size * ( 300.0 / length( mvPosition.xyz ) );
+
+        gl_Position = projectionMatrix * mvPosition;
+
+      }
+
+    </script>
+
+    <script type="x-shader/x-fragment" id="fragmentshader">
+
+      uniform vec3 color;
+      uniform sampler2D texture;
+
+      varying vec3 vColor;
+      varying float fAlpha;
+
+      void main() {
+
+        // fog
+        float depth = gl_FragCoord.z / gl_FragCoord.w;
+        float near = 30.0;
+        float far = 290.0;
+        float fog = 0.0 + smoothstep( near, far, depth );
+
+        vec4 outColor = texture2D( texture, gl_PointCoord );
+        if ( outColor.a < 0.25 ) discard; // alpha be gone
+
+        gl_FragColor = vec4( color * vColor, fAlpha );
+        gl_FragColor = gl_FragColor * outColor;
+        gl_FragColor = mix( gl_FragColor, vec4( vec3(0.0,0.0,0.0), gl_FragColor.w ), fog );
+
+      }
+
+    </script>
+
 
     </head>
 <body>
