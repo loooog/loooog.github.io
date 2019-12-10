@@ -109,9 +109,9 @@ function loadImage() {
     init();
     animate()
   };
-  // img.src = "map_small.jpg";
-  img.src = "http://oos.moxiecode.com/js_webgl/world/map_small.jpg";
-  img.crossOrigin = "Anonymou";
+  img.src = "map_small.jpg";
+  // img.src = "http://oos.moxiecode.com/js_webgl/world/map_small.jpg";
+  img.crossOrigin = "anonymou";
 
 }
 
